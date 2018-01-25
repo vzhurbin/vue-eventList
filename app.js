@@ -26,19 +26,19 @@ new Vue({
           id: 1,
           name: 'TIFF',
           description: 'Toronto International Film Festival',
-          date: '2015-09-10'
+          date: '2018-09-10'
         },
         {
           id: 2,
           name: 'The Martian Premiere',
           description: 'The Martian comes to theatres.',
-          date: '2015-10-02'
+          date: '2018-10-02'
         },
         {
           id: 3,
           name: 'SXSW',
           description: 'Music, film and interactive festival in Austin, TX.',
-          date: '2016-03-11'
+          date: '2018-03-11'
         }
       ];
 
@@ -46,23 +46,22 @@ new Vue({
       this.events = events;
 
       // or push them on separately
-      // for (var i in events) {
+      // for (let i in events) {
       //   this.events.push(events[i]);
       // }
     },
-  
+
     // Adds an event to the existing events array
     addEvent() {
-      if(this.event.name) {
+      if (this.event.name) {
         this.events.push(this.event);
         this.event = { name: '', description: '', date: '' };
       }
     },
 
     deleteEvent(index) {
-      if(confirm("Are you sure you want to delete this event?")) {
-        // $remove is a Vue convenience method similar to splice
-        this.events.splice(index, 1);        
+      if (confirm("Are you sure you want to delete this event?")) {
+        this.events.splice(index, 1);
       }
     }
   }
