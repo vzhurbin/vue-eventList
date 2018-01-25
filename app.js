@@ -11,7 +11,7 @@ new Vue({
   },
 
   // Anything within the ready function will run when the application loads
-  mounted: function() {
+  mounted() {
     // When the application loads, we want to call the method that initializes
     // some data
     this.fetchEvents();
@@ -20,8 +20,8 @@ new Vue({
   // Methods we want to use in our application are registered here
   methods: {
     // We dedicate a method to retrieving and setting some data
-    fetchEvents: function() {
-      var events = [
+    fetchEvents() {
+      const events = [
         {
           id: 1,
           name: 'TIFF',
@@ -52,14 +52,14 @@ new Vue({
     },
   
     // Adds an event to the existing events array
-    addEvent: function() {
+    addEvent() {
       if(this.event.name) {
         this.events.push(this.event);
         this.event = { name: '', description: '', date: '' };
       }
     },
 
-    deleteEvent: function(index) {
+    deleteEvent(index) {
       if(confirm("Are you sure you want to delete this event?")) {
         // $remove is a Vue convenience method similar to splice
         this.events.splice(index, 1);        
