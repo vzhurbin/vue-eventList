@@ -7,23 +7,24 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
 </head>
 
 <body>
-
+  
   <!-- navigation bar -->
   <nav class="navbar navbar-default">
-    <!-- <div class="container-fluid">
+    <div class="container-fluid">
       <a class="navbar-brand">
         <i class="glyphicon glyphicon-bullhorn"></i> Vue Events Bulletin Board</a>
-    </div> -->
+    </div> 
   </nav>
 
   <!-- main body of our application -->
   <div class="container" id="events">
 
     <!-- add an event form -->
-    <div class="col-sm-6">
+    <div class="col-sm-7">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>Add an Event</h3>
@@ -37,9 +38,10 @@
           </div>
       </div>
     </div>
+  </div>
 
-    <!-- show the events -->
-    <div class="col-sm-6">
+  <!-- show the events -->
+  <div class="col-sm-5">
       <div class="list-group">
         <a href="#" class="list-group-item" v-for="(event, index) in events">
           <h4 class="list-group-item-heading">
@@ -52,18 +54,21 @@
             {{ event.date }}
           </h5>
 
-          <p class="list-group-item-text" v-if="event.description">{{ event.description }}</p>
-
+          <p class="list-group-item-text" v-if="event.description">
+            {{ event.description }}
+          </p>
+          
           <button class="btn btn-xs btn-danger" v-on:click="deleteEvent(index)">Delete</button>
         </a>
       </div>
     </div>
   </div>
-
-  <!-- JS -->
-  <script src="node_modules/vue/dist/vue.min.js"></script>
-  <script src="node_modules/vue-resource/dist/vue-resource.min.js"></script>
-  <script src="app.js"></script>
+  
+  
 </body>
 
+<!-- JS -->
+<script src="node_modules/vue/dist/vue.min.js"></script>
+<script src="node_modules/vue-resource/dist/vue-resource.min.js"></script>
+<script src="app.js"></script>
 </html>
