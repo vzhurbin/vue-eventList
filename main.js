@@ -1,37 +1,50 @@
-var express        = require('express'),
-    bodyParser     = require('body-parser'),
-    methodOverride = require('method-override'),
-    errorHandler   = require('errorhandler'),
-    morgan         = require('morgan'),
-    routes         = require('./src'),
-    api            = require('./src/api');
+new Vue({
 
-var app = module.exports = express();
+  // We want to target the div with an id of 'events'
+  el: '#events',
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(methodOverride());
-app.use(express.static(__dirname + '/'));
-app.use('/build', express.static('public'));
+  data: {
+    event: { name: '', description: '', date: '' },
+    events: []
+  },
 
-var env = process.env.NODE_ENV;
-if ('development' == env) {
-  app.use(errorHandler({
-    dumpExceptions: true,
-    showStack: true
-  }));
-}
+  // Anything within the ready function will run when the application loads
+  mounted() {
+    this.fetchEvents();
+  },
 
-if ('production' == app.get('env')) {
-  app.use(errorHandler());
-}
+  // Methods we want to use in our application are registered here
+  methods: {
 
-app.get('/', routes.index);
-app.all('/api/events', api.events);
-app.all('/api/events/:eventId', api.event)
+    // We dedicate a method to retrieving and setting some data
+    fetchEvents() {
+      const events = [];
+      this.$http.get('/api/events').then(response =>
+        this.events = response.body,
+        err => console.log(err)
+      );
+    },
 
-app.listen(8080);
-console.log('Magic happens on port 8080...');
+    // Adds an event to the existing events array
+    addEvent() {
+      if (this.event.name) {
+        this.$http.post('/api/events', this.event).then(response => {   
+          this.events.push(this.event);
+          this.event = { name: '', description: '', date: '' };
+        }, err => console.log(err)
+        );
+      }
+    },
+
+    deleteEvent(index) {
+      if (confirm("Are you sure you want to delete this event?")) {
+        this.$http.delete('api/events/').then(response => {
+          this.events.splice(index, 1)
+        }, err => console.log(err)
+        );
+      }
+    },
+
+  },
+
+});
