@@ -3,8 +3,8 @@ var express        = require('express'),
     methodOverride = require('method-override'),
     errorHandler   = require('errorhandler'),
     morgan         = require('morgan'),
-    routes         = require('./backend'),
-    api            = require('./backend/api');
+    routes         = require('./src'),
+    api            = require('./src/api');
 
 var app = module.exports = express();
 
