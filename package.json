@@ -5,7 +5,6 @@
   "main": "server.js",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "browserify": "^15.2.0",
     "ejs": "^2.5.7",
     "errorhandler": "^1.5.0",
     "express": "^4.16.2",
@@ -19,9 +18,7 @@
     "method-override": "^2.3.5",
     "morgan": "^1.6.1"
   },
-  "scripts": {
-    "build-js": "browserify main.js -o bundle.js"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vzhurbin/vue-eventList.git"

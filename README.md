@@ -3,7 +3,7 @@ Trying Vue through [this tutorial](https://scotch.io/tutorials/build-an-app-with
 ### Installation
 `npm install`
 
-`node server.js`
+`node main.js`
 
 Open http://localhost:8080.
 
